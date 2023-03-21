@@ -1,0 +1,10 @@
+{
+    "deno.enable": true,
+    "eslint.enable": true,
+    "deno.lint": true,
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "deno.importMap": "./import_map.json"
+}
