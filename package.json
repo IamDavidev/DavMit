@@ -2,7 +2,7 @@
   "name": "davmit",
   "description": "A simple CLI for create semantically and conventional commits",
   "bin": {
-    "davmit": "./bin/davmit.js"
+    "davmit": "./src/bin.js"
   },
   "type": "module",
   "version": "0.0.3",
