@@ -5,6 +5,6 @@ import { cancel } from '@clack/prompts';
  * @returns {void}
  */
 export function exitProgram(msg) {
-  cancel(msg ?? "Exit program, can't continue");
+  cancel(msg ?? 'Exit program');
   process.exit(0);
 }
