@@ -1,16 +1,6 @@
-import {
-  confirm,
-  intro,
-  isCancel,
-  multiselect,
-  outro,
-  select,
-  text,
-} from '@clack/prompts';
+import { confirm, intro, isCancel, outro } from '@clack/prompts';
 import Chalk from 'chalk';
 
-import { COMMITS_TYPES } from './constants/typeCommits.js';
-import { adapterFilesToOptions } from './lib/adapters/adapterFilesToOptions.js';
 import { checkGitRepository } from './lib/services/checkGtiRepository.js';
 import { getChangedFiles } from './lib/services/getChangedFiles.js';
 import { getStagedFiles } from './lib/services/getStagedFiles.js';
@@ -24,9 +14,11 @@ import {
   printSuccess,
 } from './utils/uiCLI.js';
 
-import { adapterCommitsToOptions } from './lib/adapters/adapterCommitsToOption.js';
-import { executeAsync } from './utils/executeAsync.js';
-import { tryPromise } from './utils/tryPromise.js';
+import { gitAddFiles } from './lib/services/gitAddFiles.js';
+import { gitCommit } from './lib/services/gitCommit.js';
+import { CLICommitType } from './utils/CLICommitType.js';
+import { CLIMsgCommit } from './utils/CLIMsgCommit.js';
+import { CLIFilesCommit } from './utils/CLIFilesCommit.js';
 
 const descriptionCLI = ' Commits Semantics ';
 const nameCLI = ' { Davmit } ';
@@ -35,78 +27,10 @@ const commitCreatedMsg = 'Commit created successfully';
 
 /**
  *
+ * @param {string} filesToAdd
+ * @param {string[]} filesSelectedToCommit
+ * @returns {Promise<void>}
  */
-export async function CLIFilesCommit(files) {
-  const filesSelectedToCommit = await multiselect({
-    message: printPrimary('Select the files to commit'),
-    options: adapterFilesToOptions(files),
-  });
-
-  if (isCancel(filesSelectedToCommit)) return exitProgram();
-
-  return {
-    filesSelectedToCommit,
-  };
-}
-
-export async function CLICommitType() {
-  const typeCommit = await select({
-    message: printPrimary('Select the type of commit'),
-    options: adapterCommitsToOptions(COMMITS_TYPES),
-  });
-  if (isCancel(typeCommit)) return exitProgram();
-
-  return {
-    typeCommit,
-  };
-}
-
-export async function CLIMsgCommit() {
-  const msg = await text({
-    message: printPrimary(`Enter the commit message`),
-    validate: (value) => {
-      if (!value.includes('-')) {
-        if (value.length > 50)
-          return 'The commit message cannot exceed 50 characters';
-      }
-
-      const msgSplit = value.split('-');
-
-      msgSplit.forEach((msg) => {
-        if (msg.length > 50)
-          return 'The commit message cannot exceed 50 characters';
-      });
-    },
-  });
-
-  const formatMsg = msg
-    .split('-')
-    .filter(Boolean)
-    .map((msg) => `- ${msg.trim()} \n`)
-    .join('');
-
-  if (isCancel(msg)) return exitProgram();
-
-  return {
-    msg,
-    formatMsg,
-  };
-}
-
-export async function gitAddFiles(files) {
-  const [, error] = await tryPromise(() => executeAsync(`git add ${files}`));
-
-  if (error) return exitProgram(error.message);
-}
-
-export async function gitCommit(msg) {
-  const [, error] = await tryPromise(() =>
-    executeAsync(`git commit -m "${msg}"`)
-  );
-
-  if (error) return exitProgram(error.message);
-}
-
 export async function $runCLI(filesToAdd, filesSelectedToCommit) {
   const { typeCommit } = await CLICommitType();
   const { formatMsg } = await CLIMsgCommit();
@@ -140,7 +64,6 @@ export async function $runCLI(filesToAdd, filesSelectedToCommit) {
 }
 
 /**
- * function to run at the start of the application
  * @returns {Promise<void>}
  */
 export async function $bootstrap() {
