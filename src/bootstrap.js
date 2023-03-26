@@ -17,12 +17,12 @@ import {
 import { gitAddFiles } from './lib/services/gitAddFiles.js';
 import { gitCommit } from './lib/services/gitCommit.js';
 import { CLICommitType } from './utils/CLICommitType.js';
-import { CLIMsgCommit } from './utils/CLIMsgCommit.js';
 import { CLIFilesCommit } from './utils/CLIFilesCommit.js';
+import { CLIMsgCommit } from './utils/CLIMsgCommit.js';
 
 const descriptionCLI = ' Commits Semantics ';
 const nameCLI = ' { Davmit } ';
-const versionCLI = ' 0.0.2@beta';
+const versionCLI = ' 0.1.0';
 const commitCreatedMsg = 'Commit created successfully';
 
 /**
@@ -67,7 +67,6 @@ export async function $runCLI(filesToAdd, filesSelectedToCommit) {
  * @returns {Promise<void>}
  */
 export async function $bootstrap() {
-  console.log(' ');
   intro(
     bgPrimary(descriptionCLI) + bgSecondary(nameCLI) + bgPrimary(versionCLI)
   );
