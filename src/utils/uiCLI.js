@@ -29,7 +29,7 @@ export function printSuccess(msg) {
  * @returns {string}
  */
 export function bgPrimary(msg) {
-  return chalk.bgMagenta.bold(msg);
+  return chalk.bgMagenta.bold.black(msg);
 }
 
 /**
@@ -37,7 +37,7 @@ export function bgPrimary(msg) {
  * @returns {string}
  */
 export function bgSecondary(msg) {
-  return chalk.bgYellow.bold(msg);
+  return chalk.bgYellow.bold.black(msg);
 }
 
 /**
@@ -45,5 +45,5 @@ export function bgSecondary(msg) {
  * @returns {string}
  */
 export function bgSuccess(msg) {
-  return chalk.bgGreen.bold(msg);
+  return chalk.bgGreen.bold.black(msg);
 }
