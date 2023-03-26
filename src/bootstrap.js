@@ -47,10 +47,10 @@ export async function $runCLI(filesToAdd, filesSelectedToCommit) {
 
   const confirmCommit = await confirm({
     message:
-      printPrimary('\n Commit : \n') +
-      printSecondary(msgCommit) +
+      printPrimary('\n \n Commit : \n') +
+      printSecondary(msgCommit + '\n') +
       printPrimary('files : \n') +
-      printSecondary(filesList) +
+      printSecondary(filesList + '\n') +
       printSuccess(`Confirm this commit? (files and message)`),
     initialValue: true,
   });
