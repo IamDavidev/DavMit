@@ -71,12 +71,7 @@ export async function $bootstrap() {
     bgPrimary(descriptionCLI) + bgSecondary(nameCLI) + bgPrimary(versionCLI)
   );
 
-  const isRepository = await checkIsGitRepository();
-
-  if (!isRepository) {
-    outro(bgSuccess('You are not in a git repository, can not continue'));
-    return;
-  }
+  await checkIsGitRepository();
 
   const filesStaged = await getStagedFiles();
 
