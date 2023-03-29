@@ -1,4 +1,9 @@
-<!-- ![davmit](https://raw.githubusercontent.com/davmit/davmit-cli/master/assets/davmit.png) -->
+
+<img 
+  src="/static/Davmit.png"
+  height="auto"
+  width="100%"
+/>
 
 # DavMit CLi - creating commits semantics
 
