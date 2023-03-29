@@ -17,6 +17,18 @@ export const COMMITS_TYPES = [
     emoji: '✨',
   },
   {
+    description: 'update assets / images',
+    emoji: '🍱',
+  },
+  {
+    description: 'Update filas / components',
+    emoji: '📦',
+  },
+  {
+    description: 'Catch errors / introduce exceptions',
+    emoji: '🥅',
+  },
+  {
     description: 'Update documentation',
     emoji: '📝',
   },
@@ -53,7 +65,7 @@ export const COMMITS_TYPES = [
     emoji: '🗑️',
   },
   {
-    description: 'Remove ogs',
+    description: 'Remove Logs',
     emoji: '🔇',
   },
   {
