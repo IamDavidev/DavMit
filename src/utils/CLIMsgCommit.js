@@ -24,6 +24,8 @@ export async function CLIMsgCommit() {
     },
   });
 
+  if (isCancel(msg)) return exitProgram();
+
   const formatMsg = msg
     .split('-')
     .filter(Boolean)

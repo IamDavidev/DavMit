@@ -7,4 +7,5 @@ import { cancel } from '@clack/prompts';
 export function exitProgram(msg) {
   cancel(msg ?? 'Exit program');
   process.exit(0);
+  return true;
 }

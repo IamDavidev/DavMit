@@ -1,7 +1,7 @@
 import { confirm, intro, isCancel, outro } from '@clack/prompts';
 import Chalk from 'chalk';
 
-import { checkGitRepository } from './lib/services/checkGtiRepository.js';
+import { checkIsGitRepository } from './lib/services/checkIsGtiRepository.js';
 import { getChangedFiles } from './lib/services/getChangedFiles.js';
 import { getStagedFiles } from './lib/services/getStagedFiles.js';
 import { exitProgram } from './utils/exitProgram.js';
@@ -35,13 +35,13 @@ export async function $runCLI(filesToAdd, filesSelectedToCommit) {
   const { typeCommit } = await CLICommitType();
   const { formatMsg } = await CLIMsgCommit();
 
-  const msgCommit = `${typeCommit} \n ${formatMsg}`
+  const msgCommit = `${typeCommit}\n${formatMsg}`
     .replaceAll(',', '')
     .replaceAll('`', '\\`');
 
   const filesList = filesSelectedToCommit
     .map((file) => {
-      return `  - ${file} \n`;
+      return `- ${file} \n`;
     })
     .join('');
 
@@ -71,7 +71,12 @@ export async function $bootstrap() {
     bgPrimary(descriptionCLI) + bgSecondary(nameCLI) + bgPrimary(versionCLI)
   );
 
-  await checkGitRepository();
+  const isRepository = await checkIsGitRepository();
+
+  if (!isRepository) {
+    outro(bgSuccess('You are not in a git repository, can not continue'));
+    return;
+  }
 
   const filesStaged = await getStagedFiles();
 
