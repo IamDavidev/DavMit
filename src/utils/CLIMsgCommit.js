@@ -26,11 +26,19 @@ export async function CLIMsgCommit() {
 
   if (isCancel(msg)) return exitProgram();
 
-  const formatMsg = msg
+  const formatMsg = "\n"+ msg.split('-').length <= 1 ? msg.replace("-","") : msg
     .split('-')
     .filter(Boolean)
     .map((msg) => `- ${msg.trim()} \n`)
     .join('');
+
+  // const formatMsg = msg
+  //   .split('-')
+  //   .filter(Boolean)
+  //   .map((msg) => `- ${msg.trim()} \n`)
+  //   .join('');
+
+    // const  formatMsg = msg.split("-").length > 1 
 
   if (isCancel(msg)) return exitProgram();
 

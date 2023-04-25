@@ -35,7 +35,7 @@ export async function $runCLI(filesToAdd, filesSelectedToCommit) {
   const { typeCommit } = await CLICommitType();
   const { formatMsg } = await CLIMsgCommit();
 
-  const msgCommit = `${typeCommit}\n${formatMsg}`
+  const msgCommit = `${typeCommit} ${formatMsg}`
     .replaceAll(",", "")
     .replaceAll("`", "\\`");
 
