@@ -21,7 +21,7 @@ export const COMMITS_TYPES = [
     emoji: '🍱',
   },
   {
-    description: 'Update filas / components',
+    description: 'Update files / components',
     emoji: '📦',
   },
   {
