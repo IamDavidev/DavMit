@@ -19,11 +19,10 @@ import { gitCommit } from "./lib/services/gitCommit.js";
 import { CLICommitType } from "./utils/CLICommitType.js";
 import { CLIFilesCommit } from "./utils/CLIFilesCommit.js";
 import { CLIMsgCommit } from "./utils/CLIMsgCommit.js";
-import { packageJson } from "./lib/services/getVersionPackage.js";
 
 const descriptionCLI = " Commits Semantics ";
 const nameCLI = " { Davmit } ";
-const versionCLI = packageJson.version;
+const versionCLI = "1.0.7";
 const commitCreatedMsg = "Commit created successfully";
 
 /**
