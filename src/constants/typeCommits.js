@@ -87,9 +87,11 @@ export const COMMITS_TYPES = [
   }, {
     description: 'fix / update types',
     emoji: '🏷️',
-  },{
+  }, {
     description: 'Fix CI Build',
     emoji: '🤖',
+  }, {
+    description: 'update  versions/scripts',
+    emoji: '⤴',
   }
-
 ]
