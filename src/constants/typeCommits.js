@@ -4,11 +4,11 @@ export const COMMITS_TYPES = [
     emoji: '⚡️',
   },
   {
-    description: 'Fix / critical hotfix',
+    description: 'Fix  critical hotfix',
     emoji: '🚑',
   },
   {
-    description: 'Fix / simple non-critical issue.',
+    description: 'Fix  simple non-critical issue.',
 
     emoji: '🩹',
   },
@@ -69,11 +69,27 @@ export const COMMITS_TYPES = [
     emoji: '🔇',
   },
   {
-    description: 'Make / upadate arquitecture changes',
+    description: 'Make / update architecture changes',
     emoji: '🏗️',
   },
   {
     description: 'update / add tests',
     emoji: '🧪',
-  },
-];
+  }, {
+    description: 'Fix typos',
+    emoji: '✏️',
+  }, {
+    description: 'Fix security issues',
+    emoji: '🔒',
+  }, {
+    description: 'Fix performance issues',
+    emoji: '🐎',
+  }, {
+    description: 'fix / update types',
+    emoji: '🏷️',
+  },{
+    description: 'Fix CI Build',
+    emoji: '🤖',
+  }
+
+]
